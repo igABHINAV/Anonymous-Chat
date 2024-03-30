@@ -4,28 +4,13 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 const Redis = require("ioredis");
 require("dotenv").config();
+const cluster = require("node:cluster");
+const os = require("os");
 const app = express();
 const { handleMessage } = require("./controller/messageController");
 const { handleJoinRoom, handleLeaveRoom } = require("./controller/roomController");
 
-const { availableParallelism } = require("node:os");
-const cluster = require("node:cluster");
-const { createAdapter , setupPrimary} = require('@socket.io/cluster-adapter');
 
-
-
-if (cluster.isPrimary) {
-    const numCPUs = availableParallelism();
-    // create one worker per available core
-    for (let i = 0; i < numCPUs; i++) {
-        cluster.fork({
-            PORT: parseInt(process.env.PORT) 
-        });
-    }
-
-    // set up the adapter on the primary thread
-    return setupPrimary();
-}
 
 
 //Creating pub/sub and server
@@ -52,7 +37,6 @@ const io = new Server(server, {
         methods: ["GET", "POST"],
         origin: "*"
     },
-    adapter: createAdapter()
 });
 
 //middlewares
@@ -74,8 +58,18 @@ sub.on('message', (channel, message) => {
 
 const port = process.env.PORT;
 
-  server.listen(port, () => {
-    console.log(`server running at http://localhost:${port}`);
-  });
+
+const totalCPU = os.cpus().length;
+if (cluster.isPrimary) {
+    for (let i = 0; i < totalCPU; i++) {
+        cluster.fork();
+    }
+} else {
+    server.listen(port, () => {
+        console.log(`server running at http://localhost:${port}`);
+    });
+}
+
+
 
 

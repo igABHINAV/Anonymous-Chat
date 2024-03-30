@@ -19,6 +19,7 @@ function handleJoinRoom(socket, sub) {
 function handleLeaveRoom(socket) {
     socket.on("leave_room", (room) => {
         socket.leave(room);
+        socket.broadcast.emit("leaved_room", socket.id);
     });
 }
 
