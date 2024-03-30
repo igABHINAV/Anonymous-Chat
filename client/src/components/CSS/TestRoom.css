@@ -1,0 +1,66 @@
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  width: 500px;
+  border: 1px solid black;
+  margin: 50px auto; /* center the chat box horizontally */
+  background-color: #f5f5f5; /* add some background color */
+  border-radius: 5px; /* add some border radius to make it look softer */
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  background-color: #e0e0e0; /* add some background color */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-messages ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chat-messages li {
+  margin-bottom: 5px;
+}
+
+.chat-input {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 1px solid black;
+  background-color: #e0e0e0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  margin-right: 10px;
+  border: none; 
+  border-radius: 5px;
+  padding: 5px; 
+}
+
+.chat-input button {
+  border: none; /* remove the border from the button */
+  border-radius: 5px; /* add some border radius to match the chat box */
+  padding: 5px; /* add some padding to make it more comfortable to click */
+  background-color: #007bff; /* apply some blue color to the button */
+  color: rgb(255, 255, 255); /* add some white text color to the button */
+}
+
+.chat-input button:hover {
+  background-color: #0062cc; /* add some hover effect to the button */
+}

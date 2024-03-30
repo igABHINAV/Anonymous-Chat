@@ -1,0 +1,22 @@
+.room-container {
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .btn-block {
+    width: 100%;
+  }

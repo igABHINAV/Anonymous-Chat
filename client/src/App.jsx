@@ -13,9 +13,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <h1 className="container">
-      Hello world!
-    </h1>
         <Routes>
 
           <Route path="/page" element={<Page socket={socket} />} />
